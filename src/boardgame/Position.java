@@ -30,6 +30,8 @@ public class Position {
 	}
 	
 	//To string para imprimir a posição na tela
+	// Este sería o conceito de sobreposição porque estamos sobreescrevendo um 
+	//método que pertence a classe Object do java
 	@Override
 	public String toString() {
 		return row + ", " + column;
