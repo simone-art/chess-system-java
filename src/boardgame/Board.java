@@ -32,7 +32,15 @@ public class Board {
 		this.columns = columns;
 	}
 	
+	//Método que retorna a peça
+	public Piece piece(int row, int column) {
+		return pieces[row][column];
+	}
 	
+	//Sobrecarga do método que retorna a peçã pela posição
+	public Piece piece(Position position) {
+		return pieces[position.getRow()] [position.getColumn()];
+	}
 	
 	
 
