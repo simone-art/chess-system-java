@@ -1,6 +1,9 @@
 package chess;
 
 import boardgame.Board;
+import boardgame.Position;
+import chess.piece.King;
+import chess.piece.Rook;
 
 public class ChessMatch {
 	
@@ -10,6 +13,7 @@ public class ChessMatch {
 		
 		//Tamanho do tabuleiro 8 * 8
 		board = new Board(8, 8);
+		initialSetup();
 		
 	}
 	
@@ -23,6 +27,13 @@ public class ChessMatch {
 			}
 		}
 		return mat;
+	}
+	
+	//Método que vai imprimir  e inicializar no tabuleiro as peças Torre e King
+	private void initialSetup() {
+		board.placePiece(new Rook(board, Color.WHITE), new Position(2,1));
+		board.placePiece(new King(board, Color.BLACK), new Position(0,4));
+		board.placePiece(new King(board, Color.WHITE), new Position(7,4));
 	}
 	
 	

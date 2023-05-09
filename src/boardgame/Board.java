@@ -42,6 +42,14 @@ public class Board {
 		return pieces[position.getRow()] [position.getColumn()];
 	}
 	
+	// O position aqui pode ser accessado porque ele foi nomeado
+	//como atributo de referència como protected por estar no mesmo pacote
+	// assim eu consigo acessar livremente a posição da peça.
+	public void placePiece(Piece piece, Position position) {
+		pieces[position.getRow()][position.getColumn()] = piece;
+		piece.position = position;
+	}
+	
 	
 
 }
