@@ -11,6 +11,10 @@ public class Board {
 	// Constructor
 	public Board(int rows, int columns) {
 		super();
+		//Fazendo a programação defensiva
+		if(rows < 1 || columns < 1) {
+			throw new BoardException("Error creating board: There must be at least 1 row and 1 colum");
+		}
 		this.rows = rows;
 		this.columns = columns;
 		pieces = new Piece[rows][columns];
@@ -20,25 +24,27 @@ public class Board {
 		return rows;
 	}
 
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
-
+	
 	public int getColumns() {
 		return columns;
 	}
 
-	public void setColumns(int columns) {
-		this.columns = columns;
-	}
 	
 	//Método que retorna a peça
 	public Piece piece(int row, int column) {
+		//Programação defensiva
+		if(!positionExits(row, column)) {
+			throw new BoardException("Position not on the board");
+		}
 		return pieces[row][column];
 	}
 	
 	//Sobrecarga do método que retorna a peçã pela posição
 	public Piece piece(Position position) {
+		//Programação defensiva
+		if(!positionExits(position)) {
+			throw new BoardException("Position not on the board");
+		}
 		return pieces[position.getRow()] [position.getColumn()];
 	}
 	
@@ -46,8 +52,30 @@ public class Board {
 	//como atributo de referència como protected por estar no mesmo pacote
 	// assim eu consigo acessar livremente a posição da peça.
 	public void placePiece(Piece piece, Position position) {
+		//Programação defensiva
+		if(thereIsAPiece(position)) {
+			throw new BoardException("There is already a position" + position);
+		}
 		pieces[position.getRow()][position.getColumn()] = piece;
 		piece.position = position;
+	}
+	
+	//Método auxiliar que valida a existencia da posição no tabuleiro
+	private boolean positionExits(int row, int column) {
+		return row >= 0 && row < rows && column >= 0 && column < columns;
+		
+	}
+	
+	public boolean positionExits(Position position) {
+		return positionExits(position.getRow(), position.getColumn());
+	}
+	
+	public boolean thereIsAPiece(Position position) {
+		if(!positionExits(position)) {
+			throw new BoardException("Position not on the board");
+		}
+		return piece(position) != null;
+		
 	}
 	
 	
