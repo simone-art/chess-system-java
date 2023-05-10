@@ -39,6 +39,23 @@ public class Board {
 		return pieces[row][column];
 	}
 	
+	//Método que remove a peça do tabuleiro(ela não tem posição mais)
+		public Piece removePiece(Position position) {
+			if(!positionExits(position)) {
+				throw new BoardException("Position not on the board");
+			}
+			if(piece(position) == null) {
+				return null;
+			}
+			//declarada variável aux do tipo peça
+			Piece aux = piece(position);
+			aux.position = null;
+			pieces[position.getRow()][position.getColumn()] = null;
+			//Variável aux contém a peça que foi retirada
+			return aux;
+			
+		}
+	
 	//Sobrecarga do método que retorna a peçã pela posição
 	public Piece piece(Position position) {
 		//Programação defensiva
