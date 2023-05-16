@@ -2,8 +2,9 @@ package chess;
 
 import boardgame.Board;
 import boardgame.Piece;
+import boardgame.Position;
 
-public class ChessPiece extends Piece{
+public abstract class ChessPiece extends Piece{
 	
 
 	private Color color;
@@ -21,6 +22,13 @@ public class ChessPiece extends Piece{
 	//Somente acessado
 	public Color getColor() {
 		return color;
+	}
+	
+	//Método protegido para somente ser acessado pela subclasse e mesmo pacote
+	protected boolean isThereOpponentPiece(Position position) {
+		//(ChessPiece)getBoard() isto é um downCasting
+		ChessPiece p = (ChessPiece)getBoard().piece(position);
+			return p != null && p.getColor() != color;
 	}
 
 

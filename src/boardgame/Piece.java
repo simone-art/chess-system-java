@@ -1,6 +1,6 @@
 package boardgame;
 
-public class Piece {
+public abstract class Piece {
 	
 	//O atributo de referência de classe Position será protected para não ser 
 	//Visivel para outras classes
@@ -20,13 +20,27 @@ public class Piece {
 	protected Board getBoard() {
 		return board;
 	}
+	
+	//Método é abstracto porque a classe Piece e genérica
+	public abstract boolean [][] possibleMoves();
+	
+	//possibleMove é um método concreto que pode ser usado por um abstracto
+	//Isto se chama huckMétodo(um método que faz um gancho com uma subclasse concreta)
+	public boolean possibleMove(Position position) {
+		return possibleMoves()[position.getRow()] [position.getColumn()];
+	}
+	
+	public boolean isThereAnyPossivelMove() {
+		boolean[][] mat = possibleMoves();
+		for(int i = 0; i < mat.length; i++ ) {
+			for(int j = 0; j < mat.length; j++ ) {
+				if(mat[i][j]){
+					return true;
+				}
+			}
+		}
+	return false;
 
+	}
+}	
 
-	
-	
-	
-	
-	
-	
-
-}
