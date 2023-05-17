@@ -11,15 +11,29 @@ import chess.piece.Rook;
 public class ChessMatch {
 	
 	private Board board;
+	
+	private int turn;
+	private Color currentPlayer;
 
 	public ChessMatch() {
 		
 		//Tamanho do tabuleiro 8 * 8
 		board = new Board(8, 8);
-		initialSetup();
-		
+		turn = 1;
+		currentPlayer = Color.WHITE;
+		initialSetup();	
 	}
 	
+	public int getTurn() {
+		return turn;
+	}
+
+
+	public Color getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+
 	//Método que retorna uma matriz de peça de xadrez
 	public ChessPiece[][] getPieces() {
 		ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColumns()];
@@ -47,6 +61,7 @@ public class ChessMatch {
 		validateSourcePosition(source);
 		validateTargetPosition(source,target);
 		Piece capturedPiece = makeMove(source, target);
+		nextTurn();
 		//Downcasting da classe ChessPiece
 		return (ChessPiece) capturedPiece;
 	}
@@ -55,6 +70,10 @@ public class ChessMatch {
 	private void validateSourcePosition(Position position) {
 		if (!board.thereIsAPiece(position)) {
 			throw new ChessException("There is no piece on source position");
+		}
+		//Valida que o jogador não possa pegar uma peça adversária
+		if(currentPlayer != ((ChessPiece)board.piece(position)).getColor()) {
+		   throw new ChessException("The choisen piece is not yours");
 		}
 		//Valida se existe movimento possível para a peça
 		if (!board.piece(position).isThereAnyPossivelMove()) {
@@ -69,7 +88,17 @@ public class ChessMatch {
 			}
 		}
 
-
+    //Método que permite a troca de turno do jogador
+	private void nextTurn() {
+		//Incremento do turno
+		turn++;
+		//Expressão condicional ternária
+		//currentPlayer == Color.WHITE) ? Color.BLACK se o jogador comecou
+		//Com uma peça branca, agora vai pra preta.
+		//Color.BLACK : Color.WHITE; contrário se for preta vai pra branca
+		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
+		
+	}
 	
 	//Método que realiza o movimento da peça
 	private Piece makeMove(Position source, Position target) {

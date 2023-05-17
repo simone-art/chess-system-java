@@ -27,7 +27,8 @@ public class Program {
 			//Limpa a tela a cada vez que volta no While
 			try {
 				UI.clearScreen();
-				UI.printBoard(chessMatch.getPieces());
+				UI.PrintMatch(chessMatch);
+//				UI.printBoard(chessMatch.getPieces());
 				System.out.println();
 				System.out.print("Source: ");
 				ChessPosition source = UI.readChessPosition(sc);

@@ -3,6 +3,7 @@ package application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
@@ -49,6 +50,16 @@ public class UI {
 			//InputMisMatchException erro de entrada de dados
 			throw new InputMismatchException("Error reading chessPosition. Valid values from a1 to h8");
 		}
+	}
+	
+	//Método que printa a jogada
+	public static void PrintMatch(ChessMatch chessMatch) {
+		printBoard(chessMatch.getPieces());
+		System.out.println();
+		System.out.println("Turn : " +  chessMatch.getTurn());
+		System.out.println("Wainting player : " +  chessMatch.getCurrentPlayer());
+		
+		
 	}
 
 	//Com o false, o tabuleiro vai estar sen nenhuma peça colorida
