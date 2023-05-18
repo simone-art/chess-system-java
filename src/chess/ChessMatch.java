@@ -154,6 +154,7 @@ public class ChessMatch {
 	}
 	
 	
+	
 	//Método que recebe as coordenadas do xadrez
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		//Converte o xadrez para a posição de matriz
@@ -167,6 +168,8 @@ public class ChessMatch {
 		//Se a cor for igual a branco retorno preto. Caso contrário retorno branco
 		return (color == Color.WHITE )? Color.BLACK : Color.WHITE;
 	}
+	
+	
 	
 	//Método que verifica a cor da peça Rei
 	private ChessPiece king(Color color) {
@@ -185,6 +188,8 @@ public class ChessMatch {
 		
 	}
 	
+	
+	
 	//Método que verifica se existe uma peça adversária que possa fazer um movimennto de check
 	private boolean testCheck(Color color) {
 		//Código que vai pegar a posição e cor do rei
@@ -202,6 +207,7 @@ public class ChessMatch {
 		//Se for esgotada a lista e não encontrar nada então é falso
 		return false;
 	}
+	
 	
 	//Método que vai imprimir  e inicializar no tabuleiro as peças Torre e King
 	private void initialSetup() {
