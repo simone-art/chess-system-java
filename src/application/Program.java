@@ -16,18 +16,18 @@ public class Program {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+
 //		Position pos = new Position(3, 5);
 //		System.out.println(pos);
-		
+
 //		Board board = new Board(8, 8);
-		
+
 		Scanner sc = new Scanner(System.in);
 		ChessMatch chessMatch = new ChessMatch();
 		List<ChessPiece> captured = new ArrayList<>();
-		
-		while(true) {
-			//Limpa a tela a cada vez que volta no While
+
+		while (true) {
+			// Limpa a tela a cada vez que volta no While
 			try {
 				UI.clearScreen();
 				UI.PrintMatch(chessMatch, captured);
@@ -35,31 +35,30 @@ public class Program {
 				System.out.println();
 				System.out.print("Source: ");
 				ChessPosition source = UI.readChessPosition(sc);
-				
+
 				boolean[][] possibleMoves = chessMatch.possibleMoves(source);
 				UI.clearScreen();
 				UI.printBoard(chessMatch.getPieces(), possibleMoves);
-				
+
 				System.out.println();
 				System.out.print("Target: ");
 				ChessPosition target = UI.readChessPosition(sc);
-				
+
 				ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
-				if(capturedPiece != null) {
+				if (capturedPiece != null) {
 					captured.add(capturedPiece);
 				}
-				}catch(ChessException e) {
+			} catch (ChessException e) {
 				System.out.println(e.getMessage());
-				//sc.nextLine(); espera que o usuário teclee o enter
+				// sc.nextLine(); espera que o usuário teclee o enter
 				sc.nextLine();
-				
-			}catch(InputMismatchException e) {
+
+			} catch (InputMismatchException e) {
 				System.out.println(e.getMessage());
-				//sc.nextLine(); espera que o usuário teclee o enter
+				// sc.nextLine(); espera que o usuário teclee o enter
 				sc.nextLine();
 			}
-			
+
 		}
 	}
-
 }

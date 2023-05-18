@@ -24,6 +24,12 @@ public abstract class ChessPiece extends Piece{
 		return color;
 	}
 	
+	//Método que converte a Position para ChessPosition
+	public ChessPosition getChessPosition() {
+		return ChessPosition.fromPosition(position);
+		
+	}
+	
 	//Método protegido para somente ser acessado pela subclasse e mesmo pacote
 	protected boolean isThereOpponentPiece(Position position) {
 		//(ChessPiece)getBoard() isto é um downCasting
