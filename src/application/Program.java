@@ -26,7 +26,7 @@ public class Program {
 		ChessMatch chessMatch = new ChessMatch();
 		List<ChessPiece> captured = new ArrayList<>();
 
-		while (true) {
+		while (!chessMatch.getCheckMate()) {
 			// Limpa a tela a cada vez que volta no While
 			try {
 				UI.clearScreen();
@@ -60,5 +60,7 @@ public class Program {
 			}
 
 		}
+		UI.clearScreen();
+		UI.PrintMatch(chessMatch, captured);
 	}
 }
