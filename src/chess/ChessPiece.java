@@ -8,6 +8,7 @@ public abstract class ChessPiece extends Piece{
 	
 
 	private Color color;
+	private int moveCount;
 	
 	//Este construtor tem que ser feito porque a classe Piece
 	//Que é a classe pai tem um constructor, e como ela extends tem
@@ -24,6 +25,10 @@ public abstract class ChessPiece extends Piece{
 		return color;
 	}
 	
+	public int getMoveCount() {
+		return moveCount;
+	}
+	
 	//Método que converte a Position para ChessPosition
 	public ChessPosition getChessPosition() {
 		return ChessPosition.fromPosition(position);
@@ -36,6 +41,16 @@ public abstract class ChessPiece extends Piece{
 		ChessPiece p = (ChessPiece)getBoard().piece(position);
 			return p != null && p.getColor() != color;
 	}
+	
+	//Método pra incrementar a contagem de movimentos das peças
+	public void increaseMoveCount() {
+		moveCount++;
+	}
+	
+	//Método pra diminuir a contagem de movimentos das peças
+		public void decreaseMoveCount() {
+			moveCount--;
+		}
 
 
 	
